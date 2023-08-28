@@ -1,0 +1,23 @@
+module clock_enable(
+	input clk,
+	output reg enable
+);
+	reg [31:0] count;
+	parameter PERIOD = 500000; //microseconds
+	parameter TARGET_COUNT = PERIOD * 50;
+	
+	initial begin
+		count <= 0;
+		enable <= 0;
+	end
+		
+	always @(posedge clk) begin
+		if(count >= TARGET_COUNT begin
+			count = 0;
+		end
+		
+//		if (count == 0) begin
+		if (count <= 25000) begin
+			enable <= 1;
+		end
+	end
